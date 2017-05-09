@@ -1,0 +1,17 @@
+<h1>RetroMan's POS System</h1>
+
+<% if @all_products.any? %>
+<form action="/checkout" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <ul>
+    <% @all_products.each do |product| %>
+    <% if product.is_purchased == false %>
+      <li><input type="checkbox" value="<%= product.id %>" name="purchased-items[]"><%= product.name %> - $<%= product.cost %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <button type="submit">Submit</button>
+</form>
+<% else %>
+  <em>There are no products in your inventory</em>
+<% end %>

@@ -1,0 +1,12 @@
+* {
+  cursor: url(../img/fairy.png), progress !important;
+  transition: all 1s;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+input[type="checkbox"] {
+  display: inline;
+  margin-right: 8px;
+}

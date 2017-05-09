@@ -1,0 +1,45 @@
+<h1>Manager Portal</h1>
+
+<% if @all_products.any? %>
+<strong>Available items:</strong>
+  <ul>
+    <% @all_products.each do |product| %>
+    <% if product.is_purchased == false %>
+    <li><a href="/product/<%= product.id %>"><%= product.name %></a></li>
+    <% end %>
+  <%end%>
+</ul>
+  <strong>Purchased items:</strong>
+  <ul>
+  <form action="/return" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <% @all_products.each do |product| %>
+  <% if product.is_purchased == true %>
+      <li><input type="checkbox" name="returned-items[]" value="<%= product.id %>"><a href="/product/<%= product.id %>"><%= product.name %></a></li>
+    <%end%>
+  <%end%>
+  <button type="submit">Return Item(s)</button>
+  </form>
+</ul>
+<% else %>
+  <em>There are no products in your inventory</em>
+<% end %>
+
+<hr>
+<h4>Add A New Product To The Inventory</h4>
+<form action="/product/new" method="post">
+  <div class="form-group">
+    <label for="product_name">Product Name:</label>
+    <input id="product_name" type="text" name="product_name">
+  </div>
+  <div class="form-group">
+    <label for="product_description">Product Description:</label>
+    <br>
+    <textarea id="product_description" name="product_description" rows="4" cols="40"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="product_cost">Product Cost:</label>
+    <input id="product_cost" type="text" name="product_cost">
+  </div>
+  <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,9 @@
+<h1>Checkout</h1>
+
+<ul>
+  <% @returned.each do |product| %>
+  <li><%= product.name %> - $<%= product.cost %></li>
+  <% end %>
+</ul>
+
+<strong>Total = $<%= %></strong>
